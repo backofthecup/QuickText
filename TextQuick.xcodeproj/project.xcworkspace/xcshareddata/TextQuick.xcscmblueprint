@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B57F2905-70DA-4300-9FEF-99A4834B48C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : "TextQuick\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "TextQuick",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "QuickText\/TextQuick.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/backtomycar.unfuddle.com\/svn\/backtomycar_txtqck",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae"
+    }
+  ]
+}
