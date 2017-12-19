@@ -27,17 +27,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 
-    // resize the pickers
-//    NSLog(@"frame height %f", self.view.frame.size.height);
-//    
-//    float pickerHeight = (self.view.frame.size.height - self.sendMessageButton.frame.size.height - self.navigationController.navigationBar.frame.size.height - self.tabBarController.tabBar.frame.size.height) /2;
-//    
-//    NSLog(@"calculated picker size should be %f", pickerHeight );
-//    
-//    self.personPickerView.frame = CGRectMake(self.personPickerView.frame.origin.x, self.personPickerView.frame.origin.y, self.personPickerView.frame.size.width, pickerHeight);
-//
-//    self.messagePickerView.frame = CGRectMake(self.messagePickerView.frame.origin.x, self.messagePickerView.frame.origin.y, self.messagePickerView.frame.size.width, pickerHeight);
-    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -103,30 +92,6 @@
 
     return view;
 }
-
-//- (NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
-//    
-//    NSString *title = @"";
-//
-//    if (pickerView == self.messagePickerView) {
-//        QuickMessage *message = [self.messageFetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-//        title = message.body;
-//        
-//    }
-//    else {
-//        QuickContact *contact = [self.contactFetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0]];
-//        NSLog(@"...contact %@ %@", contact.name, contact.phone);
-//        title = [NSString stringWithFormat:@"%@ %@", contact.name , contact.phone];
-//        
-//    }
-//    
-//    UIFont *font = [UIFont boldSystemFontOfSize:12];
-//    NSDictionary *attributes = @{NSFontAttributeName:font};
-//
-//    return [[NSAttributedString alloc] initWithString:title attributes:attributes];
-//
-//}
-//
 
 
 #pragma mark - MFMessageComposer

@@ -6,12 +6,11 @@
 //  Copyright (c) 2012 AppsOnTheSide, LLC. All rights reserved.
 //
 
-#import <AddressBook/AddressBook.h>
-#import <AddressBookUI/AddressBookUI.h>
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import <ContactsUI/ContactsUI.h>
 
-@interface PersonViewController : UITableViewController<NSFetchedResultsControllerDelegate, ABPeoplePickerNavigationControllerDelegate>
+@interface PersonViewController : UITableViewController<NSFetchedResultsControllerDelegate, CNContactPickerDelegate>
 
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		89129F891DCBEEAC00079E3C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 89129F881DCBEEAC00079E3C /* Images.xcassets */; };
 		89543BA31522511D0038617D /* Messages.plist in Resources */ = {isa = PBXBuildFile; fileRef = 89543BA21522511D0038617D /* Messages.plist */; };
+		895763881FE8A76900E2255F /* ContactsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895763871FE8A76900E2255F /* ContactsUI.framework */; };
+		8957638A1FE8B65500E2255F /* Contacts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895763891FE8B65500E2255F /* Contacts.framework */; };
 		89642DEB15179A0F00661694 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 89642DEA15179A0F00661694 /* iTunesArtwork */; };
 		8967974D1512C87F00C50143 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 8967974B1512C87F00C50143 /* Default.png */; };
 		8967974E1512C87F00C50143 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8967974C1512C87F00C50143 /* Default@2x.png */; };
@@ -26,8 +28,6 @@
 		8981BE16150C039F00C5A644 /* CoreDataDao.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981BE15150C039F00C5A644 /* CoreDataDao.m */; };
 		8981BE22150C4E6500C5A644 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981BE21150C4E6500C5A644 /* MessageViewController.m */; };
 		8981BE25150D251800C5A644 /* EditMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981BE24150D251800C5A644 /* EditMessageViewController.m */; };
-		8981BE27150D8C1600C5A644 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8981BE26150D8C1600C5A644 /* AddressBookUI.framework */; };
-		8981BE2D150E729300C5A644 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8981BE2C150E729300C5A644 /* AddressBook.framework */; };
 		8981BE33150E7A8400C5A644 /* PersonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8981BE32150E7A8400C5A644 /* PersonViewController.m */; };
 		898E8D65150F087F00BA3C77 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898E8D64150F087F00BA3C77 /* MessageUI.framework */; };
 		898E8D6C150F09E900BA3C77 /* QuickMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 898E8D6B150F09E900BA3C77 /* QuickMessage.m */; };
@@ -38,6 +38,8 @@
 /* Begin PBXFileReference section */
 		89129F881DCBEEAC00079E3C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = TextQuick/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		89543BA21522511D0038617D /* Messages.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Messages.plist; sourceTree = "<group>"; };
+		895763871FE8A76900E2255F /* ContactsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ContactsUI.framework; path = System/Library/Frameworks/ContactsUI.framework; sourceTree = SDKROOT; };
+		895763891FE8B65500E2255F /* Contacts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Contacts.framework; path = System/Library/Frameworks/Contacts.framework; sourceTree = SDKROOT; };
 		89642DEA15179A0F00661694 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; name = iTunesArtwork; path = QuickText/iTunesArtwork; sourceTree = "<group>"; };
 		8967974B1512C87F00C50143 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		8967974C1512C87F00C50143 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
@@ -81,9 +83,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8957638A1FE8B65500E2255F /* Contacts.framework in Frameworks */,
+				895763881FE8A76900E2255F /* ContactsUI.framework in Frameworks */,
 				898E8D65150F087F00BA3C77 /* MessageUI.framework in Frameworks */,
-				8981BE2D150E729300C5A644 /* AddressBook.framework in Frameworks */,
-				8981BE27150D8C1600C5A644 /* AddressBookUI.framework in Frameworks */,
 				8981BE10150BFF1500C5A644 /* CoreData.framework in Frameworks */,
 				8981BDAE150BF56A00C5A644 /* UIKit.framework in Frameworks */,
 				8981BDB0150BF56A00C5A644 /* Foundation.framework in Frameworks */,
@@ -124,6 +126,8 @@
 		8981BDAC150BF56A00C5A644 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				895763891FE8B65500E2255F /* Contacts.framework */,
+				895763871FE8A76900E2255F /* ContactsUI.framework */,
 				8981BE2C150E729300C5A644 /* AddressBook.framework */,
 				8981BE26150D8C1600C5A644 /* AddressBookUI.framework */,
 				8981BE0F150BFF1500C5A644 /* CoreData.framework */,
@@ -325,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "568d8158-c055-4195-8083-5f408d6d6360";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "568d8158-c055-4195-8083-5f408d6d6360";
@@ -345,7 +349,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickText/TextQuick-Prefix.pch";
 				INFOPLIST_FILE = "QuickText/TextQuick-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appsontheside.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TextQuick;
 				PROVISIONING_PROFILE = "";
@@ -381,7 +385,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
@@ -401,7 +405,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickText/TextQuick-Prefix.pch";
 				INFOPLIST_FILE = "QuickText/TextQuick-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appsontheside.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TextQuick;
 				PROVISIONING_PROFILE = "";
@@ -446,7 +450,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
@@ -481,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38657a5e-9fd6-470c-8936-a9b4ff2f95e3";
@@ -501,7 +505,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickText/TextQuick-Prefix.pch";
 				INFOPLIST_FILE = "QuickText/TextQuick-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appsontheside.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TextQuick;
 				PROVISIONING_PROFILE = "";
@@ -522,7 +526,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "QuickText/TextQuick-Prefix.pch";
 				INFOPLIST_FILE = "QuickText/TextQuick-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.appsontheside.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = TextQuick;
 				PROVISIONING_PROFILE = "";

@@ -19,15 +19,6 @@
 @synthesize useNicknameCell;
 @synthesize useNicknameTableCell;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,17 +28,6 @@
     self.fontSizeLabel.text = [NSString stringWithFormat:@"%@pt", @(fontSize)];
     self.fontSlider.value = fontSize;
     
-}
-
-- (void)viewDidUnload
-{
-    [self setFontSlider:nil];
-    [self setFontSizeLabel:nil];
-    [self setUseNicknameCell:nil];
-    [self setUseNicknameTableCell:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

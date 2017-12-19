@@ -41,13 +41,6 @@
 
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
@@ -128,164 +121,118 @@
     return NO;
 }
 
+- (void)presentContactPicker {
+    CNContactPickerViewController *controller = [[CNContactPickerViewController alloc] init];
+    controller.delegate = self;
+    controller.displayedPropertyKeys = @[CNContactEmailAddressesKey, CNContactPhoneNumbersKey];
+    controller.predicateForEnablingContact = [NSPredicate predicateWithFormat: @"emailAddresses.@count > 0 OR phoneNumbers.@count > 0"];
+    [self presentViewController:controller animated:YES completion:nil];
+ 
+}
+
 - (IBAction)addContactTapped:(id)sender {
-    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    picker.predicateForSelectionOfProperty = [NSPredicate predicateWithFormat:@"key == 'phoneNumbers' OR key == 'emailAddresses' "];
+    CNContactStore *store = [[CNContactStore alloc] init];
     
-    [self presentViewController:picker animated:YES completion:nil];
+    CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+    if (status == CNAuthorizationStatusNotDetermined) {
+        [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                [self presentContactPicker];
+            }
+        }];
+        
+    }
+    else if (status == CNAuthorizationStatusAuthorized) {
+        [self presentContactPicker];
+    }
+    else if (status == CNAuthorizationStatusDenied) {
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Texting 1-2-3" message:@"Please allow access to Contacts for this app in Settings > Texting 1-2-3" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *settings = [UIAlertAction actionWithTitle:@"Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            NSURL* url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+        }];
+        [controller addAction:settings];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
+        [controller addAction:action];
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+    
 }
 
 - (IBAction)doneTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-#pragma mark - ABPeoplePickerNavigationControllerDelegate
-- (void)peoplePickerNavigationControllerDidCancel:(ABPeoplePickerNavigationController *)peoplePicker {
-    NSLog(@"...didCancel...");
+#pragma mark - CNContactPickerViewDelegate
+- (void)contactPicker:(CNContactPickerViewController *)picker didSelectContactProperty:(CNContactProperty *)contactProperty {
+    NSLog(@"Contact property selected %@", contactProperty);
     
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-//    
-//    NSLog(@"...shouldContinueAfterSelectingPerson....");
-//    
-//    return YES;
-//}
-
-- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker
-                         didSelectPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property
-                              identifier:(ABMultiValueIdentifier)identifier {
+    CNContact *contact = contactProperty.contact;
+    NSString *first = contact.givenName;
+    NSString *last = contact.familyName;
+    NSString *company = contact.organizationName;
     
-    NSLog(@"...shouldContinueAfterSelectingPerson:property:identifier..%@ %i %i", person, property, identifier);
-
-    if (property == kABPersonPhoneProperty || property == kABPersonEmailProperty) {
-        
-        // get the name and number selected
-        NSString *first = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-        NSString *last = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
-        NSString *company = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonOrganizationProperty));
-        
-        NSString *nameString = nil;
-        if (first == nil) {
-            if (last == nil) {
-                if (company == nil) {
-                    nameString = @"";
-                }
-                else {
-                    nameString = company;
-                }
+    NSString *nameString = nil;
+    if (first == nil) {
+        if (last == nil) {
+            if (company == nil) {
+                nameString = @"";
             }
             else {
-                nameString = last;
+                nameString = company;
             }
-        }
-        else if (last == nil) {
-            nameString = first;
         }
         else {
-            nameString = [NSString stringWithFormat:@"%@ %@", first, last];
+            nameString = last;
         }
-        
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:kDefaultUseNickname]) {
-            NSString *nickname = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonNicknameProperty));
-            NSLog(@"%@....", nickname);
-            if (nickname != nil) {
-                NSLog(@"Using nickname instead");
-                nameString = [NSString stringWithFormat:@"%@", nickname];
-            }
+    }
+    else if (last == nil) {
+        nameString = first;
+    }
+    else {
+        nameString = [NSString stringWithFormat:@"%@ %@", first, last];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:kDefaultUseNickname]) {
+        NSString *nickname = contact.nickname;
+        NSLog(@"%@....", nickname);
+        if (nickname != nil && nickname.length > 0) {
+            NSLog(@"Using nickname instead");
+            nameString = [NSString stringWithFormat:@"%@", nickname];
         }
-        
-        ABMultiValueRef multi = ABRecordCopyValue(person, property);
-        NSString *phoneString = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(multi, identifier));
-        CFRelease(multi);
-        
-        // check for duplicates
-        NSArray *array = [[CoreDataDao sharedDao] findContactWithPhone:phoneString];
-        if ([array count]) {
-            
+    }
+    
+    NSString *phoneString = @"";
+    if ([contactProperty.key isEqualToString:CNContactPhoneNumbersKey]) {
+        CNPhoneNumber *phone = contactProperty.value;
+        phoneString = phone.stringValue;
+    }
+    else if ([contactProperty.key isEqualToString:CNContactEmailAddressesKey]) {
+        phoneString = contactProperty.value;
+    }
+    
+    if (phoneString.length < 1) {
+        return;
+    }
+    
+    // check for duplicates
+    NSArray *array = [[CoreDataDao sharedDao] findContactWithPhone:phoneString];
+    if (array.count > 0) {
+        [self dismissViewControllerAnimated:YES completion:^{
             UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Texting 1-2-3" message:@"A contact already exists with number." preferredStyle:UIAlertControllerStyleAlert];
             UIAlertAction *action = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil];
             [controller addAction:action];
             [self presentViewController:controller animated:YES completion:nil];
-            
-            return;
-        }
+        }];
         
-        // insert contact into core data
-        [[CoreDataDao sharedDao] createContactWithName:nameString phone:phoneString];
-        
-//        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
     }
+    
+    // insert contact into core data
+    [[CoreDataDao sharedDao] createContactWithName:nameString phone:phoneString];
+
 }
 
-
-//- (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-//    
-//    if (property == kABPersonPhoneProperty || property == kABPersonEmailProperty) {
-//        NSLog(@"...shouldContinueAfterSelectingPerson:property:identifier..%@ %i %i", person, property, identifier);
-//
-//        // get the name and number selected
-//        NSString *first = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-//        NSString *last = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
-//        NSString *company = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonOrganizationProperty));
-// 
-//        NSString *nameString = nil;
-//        if (first == nil) {
-//            if (last == nil) {
-//                if (company == nil) {
-//                    nameString = @"";
-//                }
-//                else {
-//                    nameString = company;
-//                }
-//            }
-//            else {
-//                nameString = last;
-//            }
-//        }
-//        else if (last == nil) {
-//            nameString = first;
-//        }
-//        else {
-//            nameString = [NSString stringWithFormat:@"%@ %@", first, last];
-//        }
-//        
-//        if ([[NSUserDefaults standardUserDefaults] boolForKey:kDefaultUseNickname]) {
-//            NSString *nickname = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonNicknameProperty));
-//            NSLog(@"%@....", nickname);
-//            if (nickname != nil) {
-//                NSLog(@"Using nickname instead");
-//                nameString = [NSString stringWithFormat:@"%@", nickname];
-//            }
-//        }
-//        
-//        ABMultiValueRef multi = ABRecordCopyValue(person, property);
-//        NSString *phoneString = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(multi, identifier));
-//        CFRelease(multi);
-//
-//        // check for duplicates
-//        NSArray *array = [[CoreDataDao sharedDao] findContactWithPhone:phoneString];
-//        if ([array count]) {
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"QuickMessage" message:@"A contact already exists with number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//            [alert show];
-//            
-//            return NO;
-//        }
-//        
-//        // insert contact into core data
-//        
-//        [[CoreDataDao sharedDao] createContactWithName:nameString phone:phoneString];
-//        
-//                
-//        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
-//    
-//    return NO;
-//}
 
 #pragma mark - Fetched results controller
 - (NSFetchedResultsController *)fetchedResultsController

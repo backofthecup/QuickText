@@ -1,25 +1,30 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "AAC4A1BE011B08DF0554F2D028F227AB2430EBBA",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
-    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : {
 
-    }
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : 0
+    "AAC4A1BE011B08DF0554F2D028F227AB2430EBBA" : 9223372036854775807,
+    "E92DBC39B4C3B394DC386D690DD5EBCD675AEB8F" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "B57F2905-70DA-4300-9FEF-99A4834B48C5",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae" : "TextQuick\/"
+    "AAC4A1BE011B08DF0554F2D028F227AB2430EBBA" : "QuickText\/",
+    "E92DBC39B4C3B394DC386D690DD5EBCD675AEB8F" : ".."
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "TextQuick",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "QuickText\/TextQuick.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "TextQuick.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/backtomycar.unfuddle.com\/svn\/backtomycar_txtqck",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "56e50de4-b1e1-4bf4-8a8c-1f7459b1ceae"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/backofthecup\/QuickText.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AAC4A1BE011B08DF0554F2D028F227AB2430EBBA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ghe.coxautoinc.com:MPDG\/VAAppVersion.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E92DBC39B4C3B394DC386D690DD5EBCD675AEB8F"
     }
   ]
 }
