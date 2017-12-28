@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 AppsOnTheSide, LLC. All rights reserved.
 //
 
-#import "AppDelegate.h"
 #import "SettingsViewController.h"
+
+#import "TextQuick-Swift.h"
 
 @interface SettingsViewController ()
 
@@ -23,7 +24,7 @@
 {
     [super viewDidLoad];
 
-    NSInteger fontSize = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultFontSize];
+    NSInteger fontSize = [[NSUserDefaults standardUserDefaults] integerForKey:AppDelegate.kDefaultFontSize];
     
     self.fontSizeLabel.text = [NSString stringWithFormat:@"%@pt", @(fontSize)];
     self.fontSlider.value = fontSize;
@@ -42,11 +43,11 @@
     if (indexPath.section == 1) {
         if (self.useNicknameCell.accessoryType == UITableViewCellAccessoryNone) {
             self.useNicknameCell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kDefaultUseNickname];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:AppDelegate.kDefaultUseNickname];
         }
         else {
             self.useNicknameCell.accessoryType = UITableViewCellAccessoryNone;
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kDefaultUseNickname];
+            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:AppDelegate.kDefaultUseNickname];
             
         }
 
@@ -93,7 +94,7 @@
     NSInteger size = [self.fontSlider value];
     
     self.fontSizeLabel.text = [NSString stringWithFormat:@"%@pt", @(size)];
-    [[NSUserDefaults standardUserDefaults] setInteger:size forKey:kDefaultFontSize];
+    [[NSUserDefaults standardUserDefaults] setInteger:size forKey:AppDelegate.kDefaultFontSize];
 
     [[NSUserDefaults standardUserDefaults] synchronize];
     

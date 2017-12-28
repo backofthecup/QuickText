@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuickText/MainViewController.m"
-            timestampString = "501352413.437006"
+            timestampString = "536113648.770762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "-pickerView:numberOfRowsInComponent:"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-pickerView:viewForRow:forComponent:reusingView:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuickText/MainViewController.m"
-            timestampString = "507097284.903975"
+            timestampString = "536113648.770762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "-composeTapped:"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-messageFetchedResultsController"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QuickText/PersonViewController.m"
-            timestampString = "535346788.122608"
+            timestampString = "536113648.770762"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-contactPicker:didSelectContactProperty:"
             landmarkType = "7">
          </BreakpointContent>

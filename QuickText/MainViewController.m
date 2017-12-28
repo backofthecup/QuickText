@@ -8,16 +8,14 @@
 
 #import "MainViewController.h"
 #import "CoreDataDao.h"
-#import "AppDelegate.h"
+
+#import "TextQuick-Swift.h"
 
 @interface MainViewController ()
 
 @end
 
 @implementation MainViewController
-@synthesize messagePickerView = _messagePickerView;
-@synthesize personPickerView = _personPickerView;
-@synthesize sendMessageButton = _sendMessageButton;
 @synthesize messageFetchedResultsController = __messageFetchedResultsController;
 @synthesize contactFetchedResultsController = __contactFetchedResultsController;
 
@@ -70,7 +68,7 @@
     if (!label) {
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, pickerView.frame.size.width - 35, pickerView.frame.size.height - 10)];
         
-        NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaultFontSize];
+        NSInteger size = [[NSUserDefaults standardUserDefaults] integerForKey:AppDelegate.kDefaultFontSize];
         label.font = [UIFont systemFontOfSize:size];
         label.textColor = [UIColor blackColor];
         view = label;

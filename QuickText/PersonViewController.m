@@ -8,7 +8,8 @@
 
 #import "PersonViewController.h"
 #import "CoreDataDao.h"
-#import "AppDelegate.h"
+
+#import "TextQuick-Swift.h"
 
 @interface PersonViewController () {
     BOOL presentOnInit;
@@ -193,7 +194,7 @@
         nameString = [NSString stringWithFormat:@"%@ %@", first, last];
     }
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:kDefaultUseNickname]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:AppDelegate.kDefaultUseNickname]) {
         NSString *nickname = contact.nickname;
         NSLog(@"%@....", nickname);
         if (nickname != nil && nickname.length > 0) {
